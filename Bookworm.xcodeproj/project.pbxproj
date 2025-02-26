@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A26C4F3D2D6FBB3000D25529 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A26C4F3C2D6FBB3000D25529 /* RatingView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		A26C4F162D6B5AEC00D25529 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		A26C4F052D6B5AE900D25529 /* Bookworm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookworm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A26C4F152D6B5AEC00D25529 /* BookwormTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookwormTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A26C4F1F2D6B5AEC00D25529 /* BookwormUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BookwormUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A26C4F3C2D6FBB3000D25529 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		A26C4EFC2D6B5AE900D25529 = {
 			isa = PBXGroup;
 			children = (
+				A26C4F3C2D6FBB3000D25529 /* RatingView.swift */,
 				A26C4F072D6B5AE900D25529 /* Bookworm */,
 				A26C4F182D6B5AEC00D25529 /* BookwormTests */,
 				A26C4F222D6B5AEC00D25529 /* BookwormUITests */,
@@ -236,6 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A26C4F3D2D6FBB3000D25529 /* RatingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
