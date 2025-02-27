@@ -15,7 +15,26 @@ struct ContentView: View {
     
     var body: some View {
         NavigationStack{
-            Text("Count: \(books.count)")
+            // Display a list
+            List {
+                // For each book added
+                ForEach(books){ book in
+                    // Each book having a navigationLink to using itself as a value
+                    NavigationLink(value : book) {
+                        // HStack with the Emoji display at the left side displaying the emoji according the rating submitted
+                        HStack {
+                            EmojiRatingView(rating: book.rating)
+                                .font(.largeTitle)
+                            
+                            // at the right side Display Author of the book
+                            VStack(alignment: .leading){
+                                Text(book.author)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                }
+            }
                 .navigationTitle("Bookworm")
                 .toolbar{
                     ToolbarItem(placement: .topBarTrailing){
