@@ -16,6 +16,8 @@ struct ContentView: View {
     // @Query(sort: \Book.rating, order: .reverse)var books: [Book]
     @Query(sort: \Book.rating, order: .reverse)var books: [Book]
     
+
+    
     
     //Returning an Array using [SortDescriptor]
     //If we select Book.title
@@ -59,6 +61,7 @@ struct ContentView: View {
                         }
                     }
                 }
+                // add onDelete to ForEach
                 .onDelete(perform: removeObject)
             }
             
@@ -69,6 +72,13 @@ struct ContentView: View {
                     DetailView(book:book)
                 }
                 .toolbar{
+                    
+                    // Add Edit Button to delete book
+                    
+                    ToolbarItem(placement: .topBarLeading){
+                        EditButton()
+                    }
+                    
                     ToolbarItem(placement: .topBarTrailing){
                         Button("Add Book", systemImage: "plus"){
                             showingAddScreen.toggle()

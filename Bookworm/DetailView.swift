@@ -8,7 +8,19 @@ import SwiftData
 import SwiftUI
 
 struct DetailView: View {
+    
+    // Properties
+    // Need one to hold our model Context
+    @Environment(\.modelContext) var modelContext
+    // Need one to dismiss the View
+    @Environment(\.dismiss) var dismiss
+    // Need one to show if alert is showing
+    @State private var isShowingDeleteAlert = false
+    
+    
     let book: Book
+    
+    
 
     var body: some View {
         ScrollView {
@@ -39,6 +51,32 @@ struct DetailView: View {
         .navigationTitle(book.title)
         .navigationBarTitleDisplayMode(.inline)
         .scrollBounceBehavior(.basedOnSize)
+        
+        // Create an alert for Deleting book
+        .alert("Delete book", isPresented: $isShowingDeleteAlert){
+            // Button for Delete, calling deleteBook() method
+            Button("Delete", role: .destructive, action: deleteBook)
+            // Button for Cancel
+            Button("Cancel", role: .cancel) {}
+            // show a confirmation message after tapping Cancel button
+        } message: {
+            Text("Are you sure?")
+        }
+        // Create a button in the toolbar to Delete current Book with the image a of a trash can
+        .toolbar{
+            Button("Delete this book", systemImage: "trash") {
+                isShowingDeleteAlert = true
+            }
+        }
+    }
+    
+    
+    // Create delete method
+    func deleteBook() {
+        // call our modelContext and delete our CURRENT book
+        modelContext.delete(book)
+        // and call dismiss to get rid of the View
+        dismiss()
     }
 }
 
