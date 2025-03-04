@@ -4,7 +4,7 @@
 //
 //  Created by Joshua Rosado Olivencia on 2/25/25.
 //
-
+import SwiftData
 import SwiftUI
 
 struct AddBookView: View {
@@ -17,6 +17,11 @@ struct AddBookView: View {
     @State private var rating = 3
     @State private var genre = "Fantasy"
     @State private var review = ""
+
+    
+//    @Binding var validatingTextField : Bool
+    
+    
     
     // genre's array for picker
     let genres = ["Fantasy", "Horror", "Kids", "Mystery", "Poetry", "Romance", "Thriller"]
@@ -34,6 +39,7 @@ struct AddBookView: View {
                         }
                     }
                 }
+                
                 Section("Write a review"){
                     TextEditor(text:$review)
                     // Rating Selection
@@ -50,12 +56,31 @@ struct AddBookView: View {
                         
                     }
                 }
+//                .disabled(!book.validatingTextField)
             }
+            
             .navigationTitle("Add Book")
         }
     }
 }
 
-#Preview {
-    AddBookView()
-}
+//#Preview {
+//    do {
+//        // New ModelConfiguration, Temporary
+//        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+//        
+//        // Make a new container out of the Temporary Model
+//        let container = try ModelContainer(for: Book.self , configurations: config)
+//        
+//        // Sample Book ( for preview )
+//        let example = Book(title: "Test Book", author: "Test Author", genre: "Fantasy", review: "This was a great book; I really enjoyed it", rating: 4)
+//        
+//        // Send back Detail View passing the (Temporary)Sample Book as our book
+//        return AddBookView(book: example)
+//        // Using our Temporary container as ModelContainer
+//            .modelContainer(container)
+//    } catch {
+//        // Catch and return any errors
+//        return Text("Failed to create preview: \(error.localizedDescription)")
+//    }
+//}

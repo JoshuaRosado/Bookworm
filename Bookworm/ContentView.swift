@@ -8,6 +8,8 @@ import SwiftData
 import SwiftUI
 
 struct ContentView: View {
+    
+    
     @Environment(\.modelContext) var modelContext
     
     // Property of the Source
@@ -29,6 +31,8 @@ struct ContentView: View {
     // Sorting using 2 or more filters
     
     @Query(sort: [SortDescriptor(\Book.title), SortDescriptor(\Book.author)]) var books3: [Book]
+    
+    
     
 
     
@@ -86,7 +90,9 @@ struct ContentView: View {
                     }
                 }
                 .sheet(isPresented: $showingAddScreen){
+                    
                     AddBookView()
+                    
                 }
         }
     }
