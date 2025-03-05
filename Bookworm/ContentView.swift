@@ -52,17 +52,21 @@ struct ContentView: View {
                         HStack {
                             EmojiRatingView(rating: book.rating)
                                 .font(.largeTitle)
+                                
                             
                             // at the right side Display Author of the book
                             VStack(alignment: .leading){
                                 
                                 Text(book.title)
                                     .font(.headline)
+                                    .foregroundStyle(book.rating == 1 ? .red : .black)
                                 
                                 
                                 Text(book.author)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(book.rating == 1 ? .red : .secondary)
                             }
+                            
+                            
                         }
                     }
                 }
