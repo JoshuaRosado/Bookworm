@@ -7,19 +7,37 @@
 import SwiftData
 import SwiftUI
 
+// ----------------- CHALLENGE 1  VALIDATING TEXTFIELD
+extension String {
+    var isReallyEmpty : Bool{
+        return self.trimmingCharacters(in: .whitespaces).isEmpty
+    }
+}
+
 struct AddBookView: View {
     @Environment(\.modelContext) var modelContext
+    @Query(sort: \Book.rating, order: .reverse)var books: [Book]
+    
+    
     
     @Environment(\.dismiss) var dismiss
     
     @State private var title = ""
     @State private var author = ""
     @State private var rating = 3
-    @State private var genre = "Fantasy"
+    @State private var genre = "Placeholder"
     @State private var review = ""
 
     
-//    @Binding var validatingTextField : Bool
+    // ----------------- CHALLENGE 1  VALIDATING TEXTFIELD
+    var validatingTextField: Bool{
+        // Keep false until all of the textfield and picker have been selected.
+        if title.isReallyEmpty || author.isReallyEmpty || genre == "Placeholder"{
+            return false
+        }
+        return true
+    }
+    // ---
     
     
     
@@ -28,12 +46,18 @@ struct AddBookView: View {
     
     var body: some View {
         NavigationStack{
-            Form{ // Form to submt the book we want to add
+            Form{ // Form to submit the book we want to add
                 Section{
                     TextField("Name of book", text: $title)
                     TextField("Author's name", text: $author)
                     // Genre Selection
                     Picker("Genre", selection: $genre){
+                        // Adding a placeholder
+                        if genre == "Placeholder"{
+                            // while genre equals "PlaceHolder"
+                            // Display "Select ..." as a PlaceHolder
+                            Text("Select ...").tag("Placeholder")
+                        }
                         ForEach(genres, id: \.self){
                             Text($0)
                         }
@@ -47,6 +71,7 @@ struct AddBookView: View {
                 }
                 
                 Section{
+                    
                     // Save Button to add book
                     Button("Save") {
                         // New book created
@@ -55,8 +80,12 @@ struct AddBookView: View {
                         dismiss() // Dismiss View after adding Book
                         
                     }
+                    
                 }
-//                .disabled(!book.validatingTextField)
+                
+                    
+                .disabled(!validatingTextField)
+                
             }
             
             .navigationTitle("Add Book")
@@ -64,6 +93,10 @@ struct AddBookView: View {
     }
 }
 
+
+//#Preview {
+//    AddBookView()
+//}
 //#Preview {
 //    do {
 //        // New ModelConfiguration, Temporary
