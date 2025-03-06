@@ -37,14 +37,18 @@ struct DetailView: View {
                     .clipShape(.capsule)
                     .offset(x: -5, y: -5)
             }
-            
-            Text(book.author)
-                .font(.title)
-                .foregroundStyle(.secondary)
-            
-            Text(book.review)
-                .padding()
-            
+            VStack{
+                Text(book.author)
+                    .font(.title)
+                    .foregroundStyle(.secondary)
+                
+                Text(book.review)
+                    .padding()
+                
+                // CHALLENGE 3 Displaying the formatted date
+                Text(book.date, format: .dateTime.hour().minute())
+                    .foregroundStyle(.secondary)
+            }
             RatingView(rating: .constant(book.rating))
                 .font(.largeTitle)
         }
@@ -98,7 +102,7 @@ struct DetailView: View {
         let container = try ModelContainer(for: Book.self , configurations: config)
         
         // Sample Book ( for preview )
-        let example = Book(title: "Test Book", author: "Test Author", genre: "Fantasy", review: "This was a great book; I really enjoyed it", rating: 4)
+        let example = Book(title: "Test Book", author: "Test Author", genre: "Fantasy", review: "This was a great book; I really enjoyed it", rating: 4, date: Date.now)
         
         // Send back Detail View passing the (Temporary)Sample Book as our book
         return DetailView(book: example)

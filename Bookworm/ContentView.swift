@@ -64,6 +64,8 @@ struct ContentView: View {
                                 
                                 Text(book.author)
                                     .foregroundStyle(book.rating == 1 ? .red : .secondary)
+                                
+                                
                             }
                             
                             

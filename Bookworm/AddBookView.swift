@@ -27,6 +27,7 @@ struct AddBookView: View {
     @State private var rating = 3
     @State private var genre = "Placeholder"
     @State private var review = ""
+    @State private var date = Date.now
 
     
     // ----------------- CHALLENGE 1  VALIDATING TEXTFIELD
@@ -75,7 +76,7 @@ struct AddBookView: View {
                     // Save Button to add book
                     Button("Save") {
                         // New book created
-                        let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating)
+                        let newBook = Book(title: title, author: author, genre: genre, review: review, rating: rating, date: Date.now)
                         modelContext.insert(newBook) // Add newBook to our model
                         dismiss() // Dismiss View after adding Book
                         
